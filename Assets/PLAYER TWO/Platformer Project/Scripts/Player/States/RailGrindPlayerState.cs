@@ -33,7 +33,7 @@ public class RailGrindPlayerState : PlayerState
         // 退出滑轨
         entity.ExitRail();
         // 关闭自定义碰撞
-        entity.UseCustomCollision(false);
+        entity.UseCustomCollision(false);//测试
     }
 
     protected override void OnStep(Player entity)

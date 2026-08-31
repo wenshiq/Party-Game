@@ -11,6 +11,14 @@ public class ItemBox : MonoBehaviour, IEntityContact
     // 道具箱中包含的可收集物品
     public Collectable[] collectables;
 
+    [Header("Enemy Drop")]
+    // 顶箱子时可能出现的怪物预制体（留空则不生成怪物）
+    public GameObject enemyPrefab;
+
+    // 出怪概率：0 表示永不出怪，1 表示必出怪
+    [Range(0f, 1f)]
+    public float enemyChance = 0.3f;
+
     // 道具箱外观渲染器（用于显示材质变化）
     public MeshRenderer itemBoxRenderer;
 
@@ -66,6 +74,14 @@ public class ItemBox : MonoBehaviour, IEntityContact
     {
         if (m_enabled)
         {
+            // 随机出怪：只在箱子第一次被顶（还没出过金币）时判定一次，命中就出怪清空
+            if (m_index == 0 && enemyPrefab != null && Random.value < enemyChance)
+            {
+                SpawnEnemy();
+                Disable();
+                return;
+            }
+
             // 还有未收集的物品
             if (m_index < collectables.Length)
             {
@@ -93,6 +109,15 @@ public class ItemBox : MonoBehaviour, IEntityContact
                 Disable();
             }
         }
+    }
+
+    /// <summary>
+    /// 在箱子正上方生成一只怪物。
+    /// </summary>
+    protected virtual void SpawnEnemy()
+    {
+        // 在箱子顶部上方生成，让它掉下来再开始活动
+        Instantiate(enemyPrefab, transform.position + Vector3.up, Quaternion.identity);
     }
 
     /// <summary>

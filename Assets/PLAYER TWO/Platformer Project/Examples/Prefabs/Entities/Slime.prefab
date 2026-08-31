@@ -78,6 +78,7 @@ MonoBehaviour:
         m_Calls: []
   states:
   - WaypointEnemyState
+  - FollowEnemyState
 --- !u!114 &6515502618222998780
 MonoBehaviour:
   m_ObjectHideFlags: 0

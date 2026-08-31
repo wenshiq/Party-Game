@@ -56,6 +56,8 @@ public class Enemy : Entity<Enemy>
                         // 索敌
                         this.player = player;
                         enemyEvents.OnPlayerSpotted?.Invoke();
+                        // 发现玩家后自动切换到跟随状态
+                        states.Change<FollowEnemyState>();
                         return;
                     }
                 }
@@ -71,6 +73,8 @@ public class Enemy : Entity<Enemy>
                 // 失去索敌
                 player = null;
                 enemyEvents.OnPlayerScaped?.Invoke();
+                // 丢失目标后切回默认状态（第一个状态）
+                states.Change(0);
             }
         }
     }

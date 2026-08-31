@@ -183,30 +183,22 @@ public abstract class Entity<T> : EntityBase where T : Entity<T>
         InitializeController();
     }
 
-    // 初始化胶囊碰撞器（CapsuleCollider）
-    // 用于自定义的碰撞检测逻辑（比如 Overlap 检查），默认禁用
+    // 初始化胶囊碰撞器
     protected virtual void InitializeCollider()
     {
-        // 动态添加 CapsuleCollider
         m_collider = gameObject.AddComponent<CapsuleCollider>();
 
-        // 高度与 CharacterController 保持一致
         m_collider.height = controller.height;
 
-        // 半径与 CharacterController 保持一致
         m_collider.radius = controller.radius;
 
-        // 中心点与 CharacterController 保持一致
         m_collider.center = controller.center;
 
-        // 设置为触发器（不产生物理碰撞，只检测）
         m_collider.isTrigger = true;
 
-        // 默认禁用（只在需要的时候启用）
         m_collider.enabled = false;
     }
 
-    // 初始化刚体组件（Rigidbody）
     // 用于与物理系统交互，这里设置为运动学模式（不受物理力影响）
     protected virtual void InitializeRigidbody()
     {

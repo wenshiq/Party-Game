@@ -75,11 +75,17 @@ public class ItemBox : MonoBehaviour, IEntityContact
         if (m_enabled)
         {
             // 随机出怪：只在箱子第一次被顶（还没出过金币）时判定一次，命中就出怪清空
-            if (m_index == 0 && enemyPrefab != null && Random.value < enemyChance)
+            if (m_index == 0 && enemyPrefab != null)
             {
-                SpawnEnemy();
-                Disable();
-                return;
+                float roll = Random.value;
+                if (roll < enemyChance)
+                {
+                    Debug.Log("[ItemBox] roll=" + roll.ToString("F2") + " < " + enemyChance + " -> spawn enemy");
+                    SpawnEnemy();
+                    Disable();
+                    return;
+                }
+                Debug.Log("[ItemBox] roll=" + roll.ToString("F2") + " >= " + enemyChance + " -> drop coin");
             }
 
             // 还有未收集的物品
@@ -118,6 +124,7 @@ public class ItemBox : MonoBehaviour, IEntityContact
     {
         // 在箱子顶部上方生成，让它掉下来再开始活动
         Instantiate(enemyPrefab, transform.position + Vector3.up, Quaternion.identity);
+        Debug.Log("[ItemBox] Spawned enemy: " + enemyPrefab.name);
     }
 
     /// <summary>

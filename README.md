@@ -1,7 +1,8 @@
 # 乐园派对
 
 一款 3D 动作冒险游戏。玩家操控角色在类开放世界关卡中，通过移动、跳跃、滑翔、攀爬、悬挂、爬杆、滑轨、冲刺、攻击等丰富动作，克服障碍、收集金币并到达终点。演示视频场景仅为展示游戏功能搭建场景。
-链接: https://pan.baidu.com/s/1Nht8IIkH8VpjxbZvNHQchQ?pwd=gabf 提取码: gabf
+链接: https://pan.baidu.com/s/1Zqg8D5y-_LMRGH2rn8T2Tw?pwd=qfa6 提取码: qfa6
+
 
 > 基于 Unity 2023.2 开发，核心是一套自研的泛型 + CRTP 组件化有限状态机框架，将角色、怪物、相机、存档、UI 等系统统一在事件驱动架构下。
 

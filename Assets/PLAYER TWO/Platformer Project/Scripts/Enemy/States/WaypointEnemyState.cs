@@ -18,7 +18,7 @@ public class WaypointEnemyState : EnemyState
     {
         entity.Gravity();
         entity.SnapToGround();
-        // 目的地就是 当前的路径点
+        // 目的地就是 当前的路径点1
         var destnation = entity.waypoints.current.position;
         // 拿到当前路径点的坐标信息，y值重设为怪物的y值，不然y值不同怎么样都到不了目的地，就卡住了
         destnation = new Vector3(destnation.x, entity.position.y, destnation.z);
